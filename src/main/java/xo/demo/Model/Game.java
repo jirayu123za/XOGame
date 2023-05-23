@@ -1,26 +1,15 @@
 package xo.demo.Model;
-import lombok.*;
 import xo.demo.State.GameState;
+import lombok.*;
 import java.util.*;
 
+@Setter @Getter
 public class Game{
-    @Setter
-    @Getter
     private String[][] board;
-    @Setter
-    @Getter
     private String ID;
-    @Setter
-    @Getter
     private String player1, player2;
-    @Setter
-    @Getter
     private String winner;
-    @Setter
-    @Getter
     private String turn;
-    @Setter
-    @Getter
     private GameState gameState;
 
     public Game(String player1, String player2){
@@ -50,6 +39,10 @@ public class Game{
     }
 
     private void checkWin(){
+        /**Checking rows
+         * Check if all three elements in the current row are equal and not empty (" ")
+         * Set the winner based on the equal elements
+         **/
         for(int i = 0; i < 3; i++){
            if(Objects.equals(board[i][0],board[i][1]) && Objects.equals(board[i][0], board[i][2])){
                if(!Objects.equals(board[i][0], " ")){
@@ -59,6 +52,10 @@ public class Game{
            }
         }
 
+        /**Checking columns
+         * Check if all three elements in the current columns are equal and not empty (" ")
+         * Set the winner based on the equal elements
+         */
         for(int i = 0; i < 3; i++){
             if(Objects.equals(board[0][i],board[1][i]) && Objects.equals(board[0][i], board[2][i])){
                 if(!Objects.equals(board[0][i], " ")){
@@ -68,6 +65,10 @@ public class Game{
             }
         }
 
+        /**Checking diagonals
+         * Checking from top-left corner to bottom-right corner
+         * Set the winner based on the equal elements
+         */
         for(int i = 0; i < 3; i++){
             if(Objects.equals(board[0][0],board[1][1]) && Objects.equals(board[0][0], board[2][2])){
                 if(!Objects.equals(board[0][0], " ")){
@@ -77,6 +78,18 @@ public class Game{
             }
         }
 
+        /**Checking diagonals
+         * Checking from top-right corner to bottom-left corner
+         * Set the winner based on the equal elements
+         */
+        for(int i = 0; i < 3; i++){
+            if(Objects.equals(board[0][2],board[1][1]) && Objects.equals(board[0][2], board[2][0])){
+                if(!Objects.equals(board[0][2], " ")){
+                    setWinner(Objects.equals(board[0][2], player1) ? player1 : player2);
+                    return;
+                }
+            }
+        }
     }
 
     private void updateGameState(){
