@@ -1,4 +1,10 @@
 package xo.demo.Model.Message;
+import lombok.*;
 
-public class JoinMessage {
+@Setter @Getter
+public class JoinMessage{
+    private String type;
+    private String player;
+    private String gameID;
+    private String content;
 }
