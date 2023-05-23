@@ -1,6 +1,5 @@
 package xo.demo.State;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 public enum GameState{
     waitingPlayer("Waiting for player"),
@@ -10,8 +9,7 @@ public enum GameState{
     player2Win("Player2 win!!"),
     tie("Tie");
 
-    @Setter
-    @Getter
+    @Setter @Getter
     String text;
 
     GameState(String text){
