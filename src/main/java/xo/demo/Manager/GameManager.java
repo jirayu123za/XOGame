@@ -100,6 +100,6 @@ public class GameManager{
      * @param gameID the ID of the game to remove
      */
     public void removeGame(String gameID){
-        games.get(gameID);
+        games.remove(gameID);
     }
 }
