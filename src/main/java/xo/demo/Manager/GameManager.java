@@ -53,7 +53,7 @@ public class GameManager{
        String gameID = getGameByPlayer(player) != null ? getGameByPlayer(player).getID() : null;
        if(gameID != null){
            waitingPlayers.remove(player);
-           Game game = games.remove(player);
+           Game game = games.get(gameID);
            if(player.equals(game.getPlayer1())){
                if(game.getPlayer2() != null){
                     game.setPlayer1(game.getPlayer2());
@@ -69,7 +69,7 @@ public class GameManager{
                game.setPlayer2(null);
                game.setGameState(GameState.waitingPlayer);
                game.setBoard(new String[3][3]);
-               waitingPlayers.put(game.getPlayer2(), game.getID());
+               waitingPlayers.put(game.getPlayer1(), game.getID());
            }
            return game;
        }
